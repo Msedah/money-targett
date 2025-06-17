@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Withdraw Funds - MONEY TARGET</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Request Withdrawal</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 500px; margin: auto; padding: 20px; background: #f9f9f9; }
+  label, input, button { display: block; width: 100%; margin-top: 10px; }
+  button { background: #1a73e8; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; }
+  button:hover { background: #155ab6; }
+</style>
 </head>
 <body>
-    <header>
-        <h1>Withdrawal Request</h1>
-    </header>
+<h1>Request Withdrawal</h1>
+<p>Withdrawal fee is 9% of the amount requested.</p>
 
-    <section class="policy">
-        <p>Please complete the form to request a withdrawal. <strong>A 9% withdrawal fee</strong> will be deducted from your total.</p>
-    </section>
+<form id="withdrawForm">
+  <label for="amount">Withdrawal Amount (R):</label>
+  <input type="number" id="amount" name="amount" min="100" required />
+  
+  <button type="submit">Submit Withdrawal Request</button>
+</form>
 
-    <section class="actions">
-        <form action="admin/dashboard.html" method="post">
-            <label for="name">Your Full Name:</label><br>
-            <input type="text" id="name" name="name" required><br><br>
+<script>
+document.getElementById('withdrawForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const amount = parseFloat(document.getElementById('amount').value);
+  const fee = (amount * 0.09).toFixed(2);
+  const net = (amount - fee).toFixed(2);
+  alert(`Withdrawal request sent.\nAmount: R${amount}\nFee (9%): R${fee}\nNet amount: R${net}\nAdmin will review and approve.`);
+  // Save or send data to backend later
+});
+</script>
 
-            <label for="amount">Withdrawal Amount:</label><br>
-            <input type="number" id="amount" name="amount" min="100" required><br><br>
-
-            <label for="method">Your Bank Account Number:</label><br>
-            <input type="text" id="method" name="method" required><br><br>
-
-            <button type="submit">Request Withdrawal</button>
-        </form>
-    </section>
+<a href="index.html">Back to Home</a>
 </body>
 </html>
+
