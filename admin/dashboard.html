@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Admin Dashboard</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; }
+  h1 { text-align: center; color: #1a73e8; }
+  table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+  th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+  th { background: #1a73e8; color: white; }
+  button { padding: 5px 10px; margin-right: 5px; cursor: pointer; }
+  .approve { background: #28a745; color: white; border: none; border-radius: 3px; }
+  .reject { background: #dc3545; color: white; border: none; border-radius: 3px; }
+</style>
+</head>
+<body>
+<h1>Admin Dashboard</h1>
+
+<h2>Deposit Requests</h2>
+<table>
+  <thead>
+    <tr><th>User</th><th>Amount</th><th>Proof</th><th>Status</th><th>Actions</th></tr>
+  </thead>
+  <tbody id="depositList">
+    <!-- Deposit requests will be listed here -->
+  </tbody>
+</table>
+
+<h2>Withdrawal Requests</h2>
+<table>
+  <thead>
+    <tr><th>User</th><th>Amount</th><th>Fee (9%)</th><th>Net</th><th>Status</th><th>Actions</th></tr>
+  </thead>
+  <tbody id="withdrawList">
+    <!-- Withdrawal requests will be listed here -->
+  </tbody>
+</table>
+
+<script>
+// For demo, static data. Replace with dynamic data later.
+const depositRequests = [
+  { user: 'Tshepo', amount: 1000, proof: 'proof1.jpg', status: 'Pending' },
+  { user: 'Joseph', amount: 500, proof: 'proof2.jpg', status: 'Pending' }
+];
+
+const withdrawalRequests = [
+  { user: 'Tshepo', amount: 700, fee: 63, net: 637, status: 'Pending' }
+];
+
+function renderDeposits() {
+  const tbody = document.getElementById('depositList');
+  tbody.innerHTML = '';
+  depositRequests.forEach((req, i) => {
+    tbody.innerHTML += `<tr>
+      <td>${req.user}</td>
+      <td>R${req.amount}</td>
+      <td><a href="${req.proof}" target="_blank">View Proof</a></td>
+      <td>${req.status}</td>
+      <td>
+        <button class="approve" onclick="approveDeposit(${i})">Approve</button>
+        <button class="reject" onclick="rejectDeposit(${i})">Reject</button>
+      </td>
+    </tr>`;
+  });
+}
+
+function renderWithdrawals() {
+  const tbody = document.getElementById('withdrawList');
+  tbody.innerHTML = '';
+  withdrawalRequests.forEach((req, i) => {
+    tbody.innerHTML += `<tr>
+      <td>${req.user}</td>
+      <td>R${req.amount}</td>
+      <td>R${req.fee}</td>
+      <td>R${req.net}</td>
+      <td>${req.status}</td>
+      <td>
+        <button class="approve" onclick="approveWithdrawal(${i})">Approve</button>
+        <button class="reject" onclick="rejectWithdrawal(${i})">Reject</button>
+      </td>
+    </tr>`;
+  });
+}
+
+function approveDeposit(i) {
+  depositRequests[i].status = 'Approved';
+  renderDeposits();
+  alert('Deposit approved.');
+}
+
+function rejectDeposit(i) {
+  depositRequests[i].status = 'Rejected';
+  renderDeposits();
+  alert('Deposit rejected.');
+}
+
+function approveWithdrawal(i) {
+  withdrawalRequests[i].status = 'Approved';
+  renderWithdrawals();
+  alert('Withdrawal approved.');
+}
+
+function rejectWithdrawal(i) {
+  withdrawalRequests[i].status = 'Rejected';
+  renderWithdrawals();
+  alert('Withdrawal rejected.');
+}
+
+// Initial render
+renderDeposits();
+renderWithdrawals();
+</script>
+
+<a href="index.html">Back to Home</a>
+</body>
+</html>
