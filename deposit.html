@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deposit - MONEY TARGET</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Deposit Funds</h1>
+    </header>
+
+    <section class="policy">
+        <h2>Banking Details</h2>
+        <p><strong>Bank:</strong> TymeBank</p>
+        <p><strong>Account Number:</strong> 51098348962</p>
+        <p><strong>Account Holder:</strong> MR TJ</p>
+        <p>Please deposit your amount and upload proof of payment below.</p>
+    </section>
+
+    <section class="actions">
+        <form action="admin/dashboard.html" method="post" enctype="multipart/form-data">
+            <label for="name">Your Full Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="amount">Deposit Amount (min R100):</label><br>
+            <input type="number" id="amount" name="amount" min="100" required><br><br>
+
+            <label for="proof">Upload Proof of Payment:</label><br>
+            <input type="file" id="proof" name="proof" accept="image/*,.pdf" required><br><br>
+
+            <button type="submit">Submit Proof</button>
+        </form>
+    </section>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Withdraw Funds - MONEY TARGET</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Withdrawal Request</h1>
+    </header>
+
+    <section class="policy">
+        <p>Please complete the form to request a withdrawal. <strong>A 9% withdrawal fee</strong> will be deducted from your total.</p>
+    </section>
+
+    <section class="actions">
+        <form action="admin/dashboard.html" method="post">
+            <label for="name">Your Full Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="amount">Withdrawal Amount:</label><br>
+            <input type="number" id="amount" name="amount" min="100" required><br><br>
+
+            <label for="method">Your Bank Account Number:</label><br>
+            <input type="text" id="method" name="method" required><br><br>
+
+            <button type="submit">Request Withdrawal</button>
+        </form>
+    </section>
+</body>
+</html>
