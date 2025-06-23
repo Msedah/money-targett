@@ -1,50 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-  <!-- Firebase App (the core Firebase SDK) -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<!-- Firebase Authentication -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-
-<script> <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script>
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
-  };
-  firebase.initializeApp(firebaseConfig);
-
-  firebase.auth().onAuthStateChanged(user => {
-    if (!user) {
-      // Not logged in — redirect to login page
-      window.location.href = "login.html";
-    }
-    // else: logged in, show the page
-  });
-</script>
-
-  // Your Firebase configuration from step 2
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
-  };
-
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-</script>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MONEY TARGET - Investment Products</title>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (!user) {
+        // Not logged in — redirect to login page
+        window.location.href = "login.html";
+      }
+    });
+  </script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -89,50 +71,3 @@
     }
   </style>
 </head>
-<body>
-  <h1>Welcome to MONEY TARGET Investment Platform</h1>
-  <p style="text-align:center; max-width:600px; margin:auto;">
-    Invest in our handpicked products and earn daily profits excluding weekends and SA public holidays.
-    Click on any product below to see details and start earning!
-  </p>
-
-  <div class="product-list">
-    <div class="product-card">
-      <img src="assets/oranges.png" alt="Pack of Oranges" />
-      <div>Pack of Oranges</div>
-      <a href="oranges.html">Invest Now</a>
-    </div>
-    <div class="product-card">
-      <img src="assets/tomatoes.png" alt="Boxes of Tomatoes" />
-      <div>Boxes of Tomatoes</div>
-      <a href="tomatoes.html">Invest Now</a>
-    </div>
-    <div class="product-card">
-      <img src="assets/maize.png" alt="Sack of Maize" />
-      <div>Sack of Maize</div>
-      <a href="maize.html">Invest Now</a>
-    </div>
-    <div class="product-card">
-      <img src="assets/potatoes.png" alt="Sack of Potatoes" />
-      <div>Sack of Potatoes</div>
-      <a href="potatoes.html">Invest Now</a>
-    </div>
-    <div class="product-card">
-      <img src="assets/product1300.png" alt="Product 1300" />
-      <div>Product 1300</div>
-      <a href="product1300.html">Invest Now</a>
-    </div>
-    <div class="product-card">
-      <img src="assets/product2200.png" alt="Product 2200" />
-      <div>Product 2200</div>
-      <a href="product2200.html">Invest Now</a>
-    </div>
-    <div class="product-card">
-      <img src="assets/product8500.png" alt="Product 8500" />
-      <div>Product 8500</div>
-      <a href="product8500.html">Invest Now</a>
-    </div>
-  </div>
-</body>
-</html>
-
