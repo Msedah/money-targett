@@ -9,6 +9,7 @@
     img { width: 300px; border-radius: 10px; margin-bottom: 20px; }
     button { background-color: #1a73e8; color: white; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 15px; }
     button:hover { background-color: #155ab6; }
+    .message { margin-top: 20px; font-weight: bold; }
   </style>
 </head>
 <body>
@@ -19,10 +20,65 @@
   <p><strong>Duration:</strong> 35 days</p>
   <p><strong>Total Income:</strong> R385</p>
 
-  <button onclick="alert('Invest functionality coming soon!')">Invest Now</button>
+  <button onclick="invest()">Invest Now</button>
   <br /><br />
-  <button onclick="alert('Grab profit functionality coming soon!')">Grab Today’s Profit</button>
+  <button onclick="grabProfit()">Grab Today’s Profit</button>
+  <div class="message" id="message"></div>
   <br /><br />
-  <a href="index.html">Back to products</a>
+  <a href="index.html">Back to Products</a>
+
+  <script>
+    const productKey = "oranges";
+    const price = 100;
+    const dailyProfit = 11;
+    const totalDays = 35;
+
+    function invest() {
+      if (localStorage.getItem(`${productKey}_invested`)) {
+        alert("You’ve already invested in this product.");
+        return;
+      }
+
+      const today = new Date().toISOString().split("T")[0];
+      localStorage.setItem(`${productKey}_invested`, "true");
+      localStorage.setItem(`${productKey}_startDate`, today);
+      localStorage.setItem(`${productKey}_profit`, "0");
+      localStorage.setItem(`${productKey}_lastGrabDate`, "");
+      document.getElementById("message").innerText = "Investment successful! You can start grabbing profits.";
+    }
+
+    function grabProfit() {
+      const invested = localStorage.getItem(`${productKey}_invested`);
+      if (!invested) {
+        alert("Please invest first.");
+        return;
+      }
+
+      const startDate = localStorage.getItem(`${productKey}_startDate`);
+      const today = new Date().toISOString().split("T")[0];
+      const lastGrabDate = localStorage.getItem(`${productKey}_lastGrabDate`);
+      let profit = parseInt(localStorage.getItem(`${productKey}_profit`)) || 0;
+
+      const start = new Date(startDate);
+      const now = new Date(today);
+      const daysPassed = Math.floor((now - start) / (1000 * 60 * 60 * 24));
+
+      if (daysPassed >= totalDays) {
+        alert("Investment duration ended. You can no longer grab profits.");
+        return;
+      }
+
+      if (lastGrabDate === today) {
+        alert("You already grabbed today’s profit.");
+        return;
+      }
+
+      profit += dailyProfit;
+      localStorage.setItem(`${productKey}_profit`, profit.toString());
+      localStorage.setItem(`${productKey}_lastGrabDate`, today);
+
+      document.getElementById("message").innerText = `You’ve grabbed R${dailyProfit} today. Total profit: R${profit}`;
+    }
+  </script>
 </body>
 </html>
